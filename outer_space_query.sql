@@ -4,5 +4,5 @@ JOIN planet
 ON star.id = planet.starid
 LEFT JOIN moons
 ON planet.planetid = moons.planetid
-GROUP BY planet_name, star_name
+GROUP BY planet.planetid, star.id
 ORDER BY planet_name ASC;
