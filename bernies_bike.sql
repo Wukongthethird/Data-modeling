@@ -23,20 +23,28 @@
 --     price  * disc
 
 CREATE TABLE bikes (
-    id text PRIMARY KEY,
-    model text NOT NULL,
-    cost FLOAT not NULL,
+    id TEXT PRIMARY KEY,
+    model TEXT NOT NULL,
+    cost NUMERIC(10, 2) not NULL,
+    -- discount INT,
     UNIQUE (model)
 );
 
 CREATE TABLE orders (
-    orderID SERIAL PRIMARY KEY,
-    order_date DATE,
-    fly_quantity INT DEFAULT 0, 
-    haul_quantity INT DEFAULT 0, 
-    skin_quantity INT DEFAULT 0,
-    bud_quantity INT DEFAULT 0,
-    field text
-)
+    id SERIAL PRIMARY KEY,
+    order_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    -- fly_quantity INT DEFAULT 0, 
+    -- haul_quantity INT DEFAULT 0, 
+    -- skin_quantity INT DEFAULT 0,
+    -- bud_quantity INT DEFAULT 0,
+    notes TEXT
+);
 
-create TABLE 
+CREATE TABLE sales (
+    id SERIAL PRIMARY KEY,
+    bike_id INT NOT NULL REFERENCES bikes,
+    order_id INT NOT NULL REFERENCES order,
+    -- cost NUMERIC(10, 2) NOT NULL,
+    quantity INT NOT NULL
+    -- notes TEXT
+);
